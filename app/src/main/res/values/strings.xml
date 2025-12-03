@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Monopoly</string>
+    <string name="tap_to_start">Dotknij by rozpocząć</string>
+    <string name="logo_monopoly_desc">Logo gry Monopoly</string>
+</resources>

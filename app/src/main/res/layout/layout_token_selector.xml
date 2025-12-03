@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/monopoly_board_background"
+    tools:context=".GameActivity">
+
+    <ImageView
+        android:id="@+id/tokenView1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="Pionek 1"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        tools:src="@drawable/silver_car_token"
+        tools:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/tokenView2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="Pionek 2"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/tokenView1"
+        app:layout_constraintStart_toEndOf="@id/tokenView1"
+        android:layout_marginStart="8dp"
+        tools:src="@drawable/ship_token"
+        tools:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/tokenView3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="Pionek 3"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tokenView1"
+        app:layout_constraintStart_toStartOf="@id/tokenView1"
+        android:layout_marginTop="8dp"
+        tools:src="@drawable/hat_token"
+        tools:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/tokenView4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="Pionek 4"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/tokenView3"
+        app:layout_constraintStart_toEndOf="@id/tokenView3"
+        android:layout_marginStart="8dp"
+        tools:src="@drawable/dog_token"
+        tools:visibility="visible"/>
+
+
+    <LinearLayout
+        android:id="@+id/dice_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="16dp"
+        android:background="#DDFFFFFF"
+        android:elevation="4dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/dice_one"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/dice_one"
+            android:contentDescription="Pierwsza kość"
+            android:layout_marginEnd="8dp"/>
+
+        <ImageView
+            android:id="@+id/dice_two"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/dice_one"
+            android:contentDescription="Druga kość" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/api_result_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kliknij, aby rzucić kośćmi!"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:padding="8dp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/dice_area"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <ImageButton
+        android:id="@+id/btn_settings"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/settings_icon"
+        android:contentDescription="Ustawienia"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
