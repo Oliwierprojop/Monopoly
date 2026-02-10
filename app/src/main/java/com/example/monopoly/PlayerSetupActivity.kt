@@ -19,14 +19,21 @@ class PlayerSetupActivity : AppCompatActivity() {
     private lateinit var btnPlayers2: Button
     private lateinit var btnPlayers3: Button
     private lateinit var btnPlayers4: Button
+    private lateinit var playerCountButtons: List<Button>
 
     // ZMODYFIKOWANA LISTA DOSTĘPNYCH PIONKÓW W USTALONEJ KOLEJNOŚCI
     // Gracz 1: silver_car_token
     // Gracz 2: ship_token
     // Gracz 3: hat_token
     // Gracz 4: dog_token
-    private val availableTokens = listOf("silver_car_token", "ship_token", "hat_token", "dog_token")
     private var numberOfPlayers: Int = 0
+
+    private companion object {
+        private const val MIN_PLAYERS = 2
+        private val AVAILABLE_TOKENS = listOf("silver_car_token", "ship_token", "hat_token", "dog_token")
+        private const val EXTRA_PLAYER_TOKENS = "PLAYER_TOKENS"
+        private const val EXTRA_NUMBER_OF_PLAYERS = "NUMBER_OF_PLAYERS"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +48,7 @@ class PlayerSetupActivity : AppCompatActivity() {
         btnPlayers2 = findViewById<Button>(R.id.btn_players_2).apply { setOnClickListener { selectPlayerCount(2) } }
         btnPlayers3 = findViewById<Button>(R.id.btn_players_3).apply { setOnClickListener { selectPlayerCount(3) } }
         btnPlayers4 = findViewById<Button>(R.id.btn_players_4).apply { setOnClickListener { selectPlayerCount(4) } }
+        playerCountButtons = listOf(btnPlayers2, btnPlayers3, btnPlayers4)
 
         // Obsługa kliknięcia "Potwierdź liczbę graczy"
         btnConfirmCount.setOnClickListener {
@@ -56,15 +64,13 @@ class PlayerSetupActivity : AppCompatActivity() {
     // # ETAP 1: WYBÓR LICZBY GRACZY
 
     private fun resetPlayerCountButtonBorders() {
-        btnPlayers2.setBackgroundResource(android.R.drawable.btn_default)
-        btnPlayers3.setBackgroundResource(android.R.drawable.btn_default)
-        btnPlayers4.setBackgroundResource(android.R.drawable.btn_default)
+        playerCountButtons.forEach { it.setBackgroundResource(android.R.drawable.btn_default) }
     }
 
     private fun selectPlayerCount(count: Int) {
         // Logika walidacji
-        if (count > availableTokens.size) {
-            Toast.makeText(this, "Maksymalna liczba graczy to ${availableTokens.size}!", Toast.LENGTH_LONG).show()
+        if (count > AVAILABLE_TOKENS.size) {
+            Toast.makeText(this, "Maksymalna liczba graczy to ${AVAILABLE_TOKENS.size}!", Toast.LENGTH_LONG).show()
             return
         }
 
@@ -72,12 +78,7 @@ class PlayerSetupActivity : AppCompatActivity() {
 
         resetPlayerCountButtonBorders()
 
-        val selectedButton = when (count) {
-            2 -> btnPlayers2
-            3 -> btnPlayers3
-            4 -> btnPlayers4
-            else -> null
-        }
+        val selectedButton = playerCountButtons.getOrNull(count - MIN_PLAYERS)
 
         // Ustawienie ramki
         selectedButton?.setBackgroundResource(R.drawable.border_black_selected)
@@ -93,12 +94,12 @@ class PlayerSetupActivity : AppCompatActivity() {
 
         // 🟢 Wybieramy pionki zgodnie z ustaloną kolejnością
         // Bierze pierwsze N pionków z listy availableTokens
-        val selectedTokenList = availableTokens.take(numberOfPlayers)
+        val selectedTokenList = AVAILABLE_TOKENS.take(numberOfPlayers)
 
         // Uruchomienie gry i przekazanie listy pionków
         val intent = Intent(this, GameActivity::class.java).apply {
-            putStringArrayListExtra("PLAYER_TOKENS", ArrayList(selectedTokenList))
-            putExtra("NUMBER_OF_PLAYERS", numberOfPlayers)
+            putStringArrayListExtra(EXTRA_PLAYER_TOKENS, ArrayList(selectedTokenList))
+            putExtra(EXTRA_NUMBER_OF_PLAYERS, numberOfPlayers)
         }
         startActivity(intent)
         finish()
