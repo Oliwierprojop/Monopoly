@@ -258,7 +258,7 @@ class GameActivity : AppCompatActivity() {
         if (!::moneyViews.isInitialized) return
         val count = minOf(actualNumberOfPlayers, moneyViews.size)
         for (i in 0 until count) {
-            moneyViews[i].text = "Gracz ${i + 1}: $${playerMoney[i]}"
+            moneyViews[i].text = getString(R.string.player_money_format, i + 1, playerMoney[i])
         }
     }
 
@@ -385,77 +385,77 @@ class GameActivity : AppCompatActivity() {
         diceArea.isClickable = false
 
         val playerNumber = playerIndex + 1
-        val title = "Gracz $playerNumber: ${square.name}"
+        val title = getString(R.string.dialog_title_player_square, playerNumber, square.name)
         val builder = AlertDialog.Builder(this).setTitle(title)
         var followUp: (() -> Unit)? = null
 
         if (wentToJail) {
-            builder.setMessage("Idziesz do więzienia!")
-                .setPositiveButton("OK", null)
+            builder.setMessage(getString(R.string.dialog_go_to_jail))
+                .setPositiveButton(R.string.action_ok, null)
         } else {
             when (square.type) {
             SquareType.PROPERTY, SquareType.RAILROAD, SquareType.UTILITY -> {
                 val owner = owners.getOrNull(positionIndex) ?: -1
                 if (owner == -1) {
                     val costText = square.cost?.toString() ?: "-"
-                    builder.setMessage("Cena: $costText.\nCzy chcesz kupić to pole?")
-                        .setPositiveButton("Kup") { _, _ ->
+                    builder.setMessage(getString(R.string.dialog_buy_question, costText))
+                        .setPositiveButton(R.string.action_buy) { _, _ ->
                             val cost = square.cost ?: 0
                             if (playerMoney[playerIndex] >= cost) {
                                 owners[positionIndex] = playerIndex
                                 adjustMoney(playerIndex, -cost)
-                                Toast.makeText(this, "Kupiono: ${square.name}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, getString(R.string.toast_bought, square.name), Toast.LENGTH_SHORT).show()
                             } else {
-                                Toast.makeText(this, "Brak środków na zakup.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, getString(R.string.toast_not_enough_money), Toast.LENGTH_SHORT).show()
                             }
                         }
-                        .setNegativeButton("Nie", null)
+                        .setNegativeButton(R.string.action_no, null)
                 } else if (owner == playerIndex) {
-                    builder.setMessage("To Twoje pole.\nStan konta: ${playerMoney[playerIndex]}.")
-                        .setPositiveButton("OK", null)
+                    builder.setMessage(getString(R.string.dialog_own_square, playerMoney[playerIndex]))
+                        .setPositiveButton(R.string.action_ok, null)
                 } else {
                     val rent = calculateRent(square, owner, diceTotal)
                     transferMoney(playerIndex, owner, rent)
-                    builder.setMessage("Pole należy do gracza ${owner + 1}.\nCzynsz: $rent.\nStan konta: ${playerMoney[playerIndex]}.")
-                        .setPositiveButton("OK", null)
+                    builder.setMessage(getString(R.string.dialog_rent_info, owner + 1, rent, playerMoney[playerIndex]))
+                        .setPositiveButton(R.string.action_ok, null)
                 }
             }
             SquareType.TAX -> {
                 val taxText = square.tax?.toString() ?: "-"
                 val tax = square.tax ?: 0
                 adjustMoney(playerIndex, -tax)
-                builder.setMessage("Podatek do zapłaty: $taxText.")
-                    .setPositiveButton("OK", null)
+                builder.setMessage(getString(R.string.dialog_tax_due, taxText))
+                    .setPositiveButton(R.string.action_ok, null)
             }
             SquareType.CHANCE -> {
                 val card = chanceDeck.draw()
                 val cardResult = applyCardEffect(playerIndex, card, positionIndex, diceTotal)
-                builder.setMessage("Szansa!\n${card.text}\nStan konta: ${playerMoney[playerIndex]}.")
-                    .setPositiveButton("OK", null)
+                builder.setMessage(getString(R.string.dialog_chance, card.text, playerMoney[playerIndex]))
+                    .setPositiveButton(R.string.action_ok, null)
                 followUp = cardResult.followUp
             }
             SquareType.COMMUNITY_CHEST -> {
                 val card = communityDeck.draw()
                 val cardResult = applyCardEffect(playerIndex, card, positionIndex, diceTotal)
-                builder.setMessage("Kasa Społeczna!\n${card.text}\nStan konta: ${playerMoney[playerIndex]}.")
-                    .setPositiveButton("OK", null)
+                builder.setMessage(getString(R.string.dialog_community_chest, card.text, playerMoney[playerIndex]))
+                    .setPositiveButton(R.string.action_ok, null)
                 followUp = cardResult.followUp
             }
             SquareType.JAIL -> {
-                builder.setMessage("Więzienie / Odwiedziny.")
-                    .setPositiveButton("OK", null)
+                builder.setMessage(getString(R.string.dialog_jail_visiting))
+                    .setPositiveButton(R.string.action_ok, null)
             }
             SquareType.FREE_PARKING -> {
-                builder.setMessage("Darmowy parking.")
-                    .setPositiveButton("OK", null)
+                builder.setMessage(getString(R.string.dialog_free_parking))
+                    .setPositiveButton(R.string.action_ok, null)
             }
             SquareType.GO -> {
-                builder.setMessage("Start.")
-                    .setPositiveButton("OK", null)
+                builder.setMessage(getString(R.string.dialog_start))
+                    .setPositiveButton(R.string.action_ok, null)
             }
             SquareType.GO_TO_JAIL -> {
-                builder.setMessage("Idziesz do więzienia!")
-                    .setPositiveButton("OK", null)
+                builder.setMessage(getString(R.string.dialog_go_to_jail))
+                    .setPositiveButton(R.string.action_ok, null)
             }
             }
         }
@@ -489,7 +489,7 @@ class GameActivity : AppCompatActivity() {
 
         // 2. Obsługa Stop Gry
         stopButton.setOnClickListener {
-            Toast.makeText(this, "Gra z botami zatrzymana! Powrót...", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_bots_stopped), Toast.LENGTH_SHORT).show()
             dialog.dismiss() // Zamknij dialog
             // finish() // Zamykamy GameActivity, co prowadzi do poprzedniej
         }
@@ -516,7 +516,7 @@ class GameActivity : AppCompatActivity() {
 
         val url = "https://www.randomnumberapi.com/api/v1.0/random?min=2&max=12&count=1"
 
-        apiResultText.text = "Łączę się z API... Rzucanie kośćmi online..."
+        apiResultText.text = getString(R.string.api_connecting)
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
@@ -530,12 +530,12 @@ class GameActivity : AppCompatActivity() {
                     processRollResult(totalRoll)
 
                 } catch (e: Exception) {
-                    Toast.makeText(this, "Błąd parsowania API: Używam lokalnego losowania.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(R.string.toast_api_parse_error), Toast.LENGTH_LONG).show()
                     processRollResult(rollLocally())
                 }
             },
             { _ ->
-                Toast.makeText(this, "Błąd połączenia API: Używam lokalnego losowania.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.toast_api_connection_error), Toast.LENGTH_LONG).show()
                 processRollResult(rollLocally())
             }
         )
@@ -578,12 +578,19 @@ class GameActivity : AppCompatActivity() {
         }
 
         // Wyświetlenie komunikatu o ruchu
-        Toast.makeText(this, "Gracz $playerNumber: wyrzucono $totalRoll! Ruszasz o $totalRoll pól.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.toast_roll_result, playerNumber, totalRoll), Toast.LENGTH_SHORT).show()
 
         currentPlayerIndex = (currentPlayerIndex + 1) % actualNumberOfPlayers
 
         // Zaktualizowanie tekstu na ekranie
-        apiResultText.text = "Gracz $playerNumber: ruch o $totalRoll (${landedSquare.name}, pole $newPosition)\nTeraz kolej gracza ${currentPlayerIndex + 1}."
+        apiResultText.text = getString(
+            R.string.status_roll_result,
+            playerNumber,
+            totalRoll,
+            landedSquare.name,
+            newPosition,
+            currentPlayerIndex + 1
+        )
 
         showLandingDialog(playerIndex, landedSquare, newPosition, wentToJail, totalRoll)
 

@@ -1,5 +1,47 @@
 <resources>
     <string name="app_name">Monopoly</string>
-    <string name="tap_to_start">Dotknij by rozpocząć</string>
+    <string name="tap_to_start">Dotknij, aby rozpocząć</string>
     <string name="logo_monopoly_desc">Logo gry Monopoly</string>
+
+    <string name="token_desc_1">Pionek 1</string>
+    <string name="token_desc_2">Pionek 2</string>
+    <string name="token_desc_3">Pionek 3</string>
+    <string name="token_desc_4">Pionek 4</string>
+    <string name="dice_one_desc">Pierwsza kość</string>
+    <string name="dice_two_desc">Druga kość</string>
+    <string name="settings_desc">Ustawienia</string>
+
+    <string name="player_money_placeholder">Gracz: $1500</string>
+    <string name="player_money_format">Gracz %1$d: $%2$d</string>
+
+    <string name="roll_dice_prompt">Kliknij, aby rzucić kośćmi!</string>
+
+    <string name="dialog_title_player_square">Gracz %1$d: %2$s</string>
+    <string name="dialog_go_to_jail">Idziesz do więzienia!</string>
+    <string name="dialog_buy_question">Cena: %1$s.\nCzy chcesz kupić to pole?</string>
+    <string name="action_buy">Kup</string>
+    <string name="action_no">Nie</string>
+    <string name="action_ok">OK</string>
+    <string name="toast_bought">Kupiono: %1$s</string>
+    <string name="toast_not_enough_money">Brak środków na zakup.</string>
+    <string name="dialog_own_square">To Twoje pole.\nStan konta: %1$d.</string>
+    <string name="dialog_rent_info">Pole należy do gracza %1$d.\nCzynsz: %2$d.\nStan konta: %3$d.</string>
+    <string name="dialog_tax_due">Podatek do zapłaty: %1$s.</string>
+    <string name="dialog_chance">Szansa!\n%1$s\nStan konta: %2$d.</string>
+    <string name="dialog_community_chest">Kasa Społeczna!\n%1$s\nStan konta: %2$d.</string>
+    <string name="dialog_jail_visiting">Więzienie / Odwiedziny.</string>
+    <string name="dialog_free_parking">Bezpłatny parking.</string>
+    <string name="dialog_start">Start.</string>
+
+    <string name="toast_bots_stopped">Gra z botami zatrzymana! Powrót...</string>
+    <string name="api_connecting">Łączę się z API... Rzucanie kośćmi online...</string>
+    <string name="toast_api_parse_error">Błąd parsowania API: używam lokalnego losowania.</string>
+    <string name="toast_api_connection_error">Błąd połączenia API: używam lokalnego losowania.</string>
+    <string name="toast_roll_result">Gracz %1$d: wyrzucono %2$d! Ruszasz o %2$d pól.</string>
+    <string name="status_roll_result">Gracz %1$d: ruch o %2$d (%3$s, pole %4$d)\nTeraz kolej gracza %5$d.</string>
+
+    <string name="settings_title">Ustawienia gry</string>
+    <string name="settings_volume">Głośność gry</string>
+    <string name="settings_stop_bot">Zatrzymaj grę (tylko boty)</string>
+    <string name="settings_close">Zamknij</string>
 </resources>

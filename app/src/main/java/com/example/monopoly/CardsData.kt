@@ -34,34 +34,34 @@ class CardDeck(cards: List<Card>) {
 
 object CardsData {
     val chanceCards: List<Card> = listOf(
-        Card("Advance to GO (Collect $200).", CardEffect.MoveTo(0, collectGo = true)),
-        Card("Go to Jail. Go directly to Jail.", CardEffect.GoToJail),
-        Card("Advance to Illinois Avenue.", CardEffect.MoveTo(24, collectGo = true)),
-        Card("Advance to St. Charles Place.", CardEffect.MoveTo(11, collectGo = true)),
-        Card("Take a trip to Reading Railroad.", CardEffect.MoveTo(5, collectGo = true)),
-        Card("Bank pays you dividend of $50.", CardEffect.Money(50)),
-        Card("Pay poor tax of $15.", CardEffect.Money(-15)),
-        Card("Your building loan matures. Collect $150.", CardEffect.Money(150)),
-        Card("Go back 3 spaces.", CardEffect.MoveSteps(-3)),
-        Card("Advance to the nearest Railroad.", CardEffect.MoveToNearest(SquareType.RAILROAD)),
-        Card("Advance to the nearest Utility.", CardEffect.MoveToNearest(SquareType.UTILITY)),
-        Card("You have been elected Chairman. Pay each player $50.", CardEffect.PayEachPlayer(50))
+        Card("Przejdź na Start (odbierz $200).", CardEffect.MoveTo(0, collectGo = true)),
+        Card("Idź do więzienia. Idź prosto do więzienia.", CardEffect.GoToJail),
+        Card("Przejdź na Plac Wilsona.", CardEffect.MoveTo(24, collectGo = true)),
+        Card("Przejdź na Płowiecką.", CardEffect.MoveTo(11, collectGo = true)),
+        Card("Udaj się na Dworzec Zachodni.", CardEffect.MoveTo(5, collectGo = true)),
+        Card("Bank wypłaca dywidendę $50.", CardEffect.Money(50)),
+        Card("Zapłać podatek dla ubogich $15.", CardEffect.Money(-15)),
+        Card("Twoja pożyczka budowlana dojrzewa. Odbierz $150.", CardEffect.Money(150)),
+        Card("Cofnij się o 3 pola.", CardEffect.MoveSteps(-3)),
+        Card("Przejdź do najbliższej kolei.", CardEffect.MoveToNearest(SquareType.RAILROAD)),
+        Card("Przejdź do najbliższego zakładu użyteczności publicznej.", CardEffect.MoveToNearest(SquareType.UTILITY)),
+        Card("Wybrano Cię przewodniczącym. Zapłać każdemu graczowi $50.", CardEffect.PayEachPlayer(50))
     )
 
     val communityCards: List<Card> = listOf(
-        Card("Advance to GO (Collect $200).", CardEffect.MoveTo(0, collectGo = true)),
-        Card("Bank error in your favor. Collect $200.", CardEffect.Money(200)),
-        Card("Doctor's fees. Pay $50.", CardEffect.Money(-50)),
-        Card("From sale of stock you get $50.", CardEffect.Money(50)),
-        Card("Get Out of Jail Free.", CardEffect.None),
-        Card("Go to Jail.", CardEffect.GoToJail),
-        Card("Grand Opera Night. Collect $50 from each player.", CardEffect.CollectFromEachPlayer(50)),
-        Card("Holiday Fund matures. Collect $100.", CardEffect.Money(100)),
-        Card("Income tax refund. Collect $20.", CardEffect.Money(20)),
-        Card("Life insurance matures. Collect $100.", CardEffect.Money(100)),
-        Card("Pay hospital fees of $100.", CardEffect.Money(-100)),
-        Card("Pay school fees of $50.", CardEffect.Money(-50)),
-        Card("Receive $25 consultancy fee.", CardEffect.Money(25)),
-        Card("You inherit $100.", CardEffect.Money(100))
+        Card("Przejdź na Start (odbierz $200).", CardEffect.MoveTo(0, collectGo = true)),
+        Card("Błąd banku na Twoją korzyść. Odbierz $200.", CardEffect.Money(200)),
+        Card("Opłata lekarska. Zapłać $50.", CardEffect.Money(-50)),
+        Card("Ze sprzedaży akcji otrzymujesz $50.", CardEffect.Money(50)),
+        Card("Wyjdź z więzienia za darmo.", CardEffect.None),
+        Card("Idź do więzienia.", CardEffect.GoToJail),
+        Card("Wielka noc operowa. Pobierz $50 od każdego gracza.", CardEffect.CollectFromEachPlayer(50)),
+        Card("Fundusz wakacyjny dojrzewa. Odbierz $100.", CardEffect.Money(100)),
+        Card("Zwrot podatku dochodowego. Odbierz $20.", CardEffect.Money(20)),
+        Card("Ubezpieczenie na życie dojrzewa. Odbierz $100.", CardEffect.Money(100)),
+        Card("Zapłać rachunek za szpital $100.", CardEffect.Money(-100)),
+        Card("Zapłać czesne $50.", CardEffect.Money(-50)),
+        Card("Otrzymujesz $25 honorarium za konsultacje.", CardEffect.Money(25)),
+        Card("Dziedziczysz $100.", CardEffect.Money(100))
     )
 }

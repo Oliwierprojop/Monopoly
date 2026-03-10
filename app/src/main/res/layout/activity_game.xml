@@ -26,7 +26,7 @@
             android:id="@+id/tokenView1"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:contentDescription="Pionek 1"
+            android:contentDescription="@string/token_desc_1"
             android:visibility="gone"
             android:layout_gravity="top|start"
             tools:src="@drawable/silver_car_token"
@@ -36,7 +36,7 @@
             android:id="@+id/tokenView2"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:contentDescription="Pionek 2"
+            android:contentDescription="@string/token_desc_2"
             android:visibility="gone"
             android:layout_gravity="top|start"
             tools:src="@drawable/ship_token"
@@ -46,7 +46,7 @@
             android:id="@+id/tokenView3"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:contentDescription="Pionek 3"
+            android:contentDescription="@string/token_desc_3"
             android:visibility="gone"
             android:layout_gravity="top|start"
             tools:src="@drawable/hat_token"
@@ -56,7 +56,7 @@
             android:id="@+id/tokenView4"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:contentDescription="Pionek 4"
+            android:contentDescription="@string/token_desc_4"
             android:visibility="gone"
             android:layout_gravity="top|start"
             tools:src="@drawable/dog_token"
@@ -78,7 +78,7 @@
             android:id="@+id/tv_player1_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gracz 1: $1500"
+            android:text="@string/player_money_placeholder"
             android:textColor="#1B1B1B"
             android:textSize="14sp" />
 
@@ -86,7 +86,7 @@
             android:id="@+id/tv_player2_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gracz 2: $1500"
+            android:text="@string/player_money_placeholder"
             android:textColor="#1B1B1B"
             android:textSize="14sp" />
 
@@ -94,7 +94,7 @@
             android:id="@+id/tv_player3_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gracz 3: $1500"
+            android:text="@string/player_money_placeholder"
             android:textColor="#1B1B1B"
             android:textSize="14sp" />
 
@@ -102,7 +102,7 @@
             android:id="@+id/tv_player4_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gracz 4: $1500"
+            android:text="@string/player_money_placeholder"
             android:textColor="#1B1B1B"
             android:textSize="14sp" />
     </LinearLayout>
@@ -129,7 +129,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/dice_one"
-            android:contentDescription="Pierwsza kość"
+            android:contentDescription="@string/dice_one_desc"
             android:layout_marginEnd="8dp"/>
 
         <ImageView
@@ -137,14 +137,14 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/dice_one"
-            android:contentDescription="Druga kość" />
+            android:contentDescription="@string/dice_two_desc" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/api_result_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kliknij, aby rzucić kośćmi!"
+        android:text="@string/roll_dice_prompt"
         android:textSize="18sp"
         android:textColor="@android:color/black"
         android:padding="8dp"
@@ -159,7 +159,7 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/settings_icon"
-        android:contentDescription="Ustawienia"
+        android:contentDescription="@string/settings_desc"
         android:background="@android:color/transparent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
